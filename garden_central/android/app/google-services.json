@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "805358720744",
+    "project_id": "garden-central-b8cbc",
+    "storage_bucket": "garden-central-b8cbc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805358720744:android:2d3da0e2e0e65177755b5d",
+        "android_client_info": {
+          "package_name": "com.example.garden_central"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805358720744-2pm40gkl24b7htfhik9gdmk3da370k52.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbmt0LJpNYo3BGZJR27v4g4E7llePg6LU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805358720744-2pm40gkl24b7htfhik9gdmk3da370k52.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

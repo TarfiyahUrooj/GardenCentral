@@ -1,0 +1,559 @@
+MaterialStateTextStyle.resolveWith(
+                        (Set<MaterialState> states) {
+                      final Color color = states.contains(MaterialState.focused)
+                          ? Colors.pink
+                          : Colors.grey.shade700;
+                      return TextStyle(color: color);
+                    }),
+
+
+
+
+/*Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("lib/images/plant.jpg"), fit: BoxFit.cover),
+          ),
+          child: Center(
+            child: Column(
+              children: [
+                const SizedBox(height: 100),
+                const Icon(
+                  Icons.nature,
+                  size: 100,
+                ),
+                SizedBox(height: 50),
+                Text(
+                  'Welcome',
+                  style: TextStyle(
+                    color: Colors.green[300],
+                    fontSize: 16,
+                  ),
+                ),
+
+                //username
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Username',
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green.shade300),
+                      ),
+                      //hintText: 'Username',
+                      hintStyle: TextStyle(color: Colors.grey.shade700),
+                    ),
+                  ),
+                ),
+
+                //password
+                SizedBox(height: 15),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextField(
+                    //obscureText: true,
+                    obscureText: _obscureText,
+                    decoration: InputDecoration(
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _obscureText = !_obscureText;
+                          });
+                          // _obscureText = !_obscureText;
+                        },
+                        child: Icon(_obscureText
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                      ),
+                      labelText: 'Password',
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green.shade300),
+                      ),
+                      //hintText: 'password',
+                      hintStyle: TextStyle(color: Colors.grey.shade700),
+                    ),
+                  ),
+                ),
+
+                //login button
+                SizedBox(height: 30),
+                GestureDetector(
+                  child: Container(
+                    padding: const EdgeInsets.all(25),
+                    margin: const EdgeInsets.symmetric(horizontal: 25),
+                    decoration: BoxDecoration(
+                      color: Colors.green.shade300,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "LOGIN",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),*/
+
+
+
+
+import 'package:flutter/material.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('My Ecommerce App'),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              'Categories',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Container(
+            height: 80,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                CategoryItem(
+                  icon: Icons.shoes,
+                  label: 'Shoes',
+                  onTap: () {
+                    // Navigate to shoes category page
+                  },
+                ),
+                CategoryItem(
+                  icon: Icons.bag,
+                  label: 'Bags',
+                  onTap: () {
+                    // Navigate to bags category page
+                  },
+                ),
+                CategoryItem(
+                  icon: Icons.watch,
+                  label: 'Watches',
+                  onTap: () {
+                    // Navigate to watches category page
+                  },
+                ),
+                // Add more category items here
+              ],
+            ),
+          ),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              'Featured Products',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Expanded(
+            child: ListView(
+              children: [
+                ProductItem(
+                  imageUrl: 'https://example.com/product1.jpg',
+                  name: 'Product 1',
+                  price: 99.99,
+                  onTap: () {
+                    // Navigate to product detail page
+                  },
+                ),
+                ProductItem(
+                  imageUrl: 'https://example.com/product2.jpg',
+                  name: 'Product 2',
+                  price: 49.99,
+                  onTap: () {
+                    // Navigate to product detail page
+                  },
+                ),
+                // Add more product items here
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CategoryItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+
+  const CategoryItem({
+    Key? key,
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: 80,
+        child: Column(
+          children: [
+            Icon(icon, size: 40),
+            const SizedBox(height: 8),
+            Text(label),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ProductItem extends StatelessWidget {
+  final String imageUrl;
+  final String name;
+  final double price;
+  final VoidCallback onTap;
+
+  const ProductItem({
+    Key? key,
+    required this.imageUrl,
+    required this.name,
+    required this.price,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 80,
+              height: 80,
+              decoration
+
+
+
+
+User
+please continue
+ChatGPT
+less
+Copy code
+          : BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              image: DecorationImage(
+                image: NetworkImage(imageUrl),
+                fit: BoxFit.cover,
+              ),
+            ),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name,
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              const SizedBox(height: 4),
+              Text(
+                '\$${price.toStringAsFixed(2)}',
+                style: Theme.of(context).textTheme.bodyText2,
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  ),
+);
+
+
+
+
+
+
+
+
+// import 'package:flutter/material.dart';
+// import 'package:garden_central/data/data.dart';
+// import 'package:garden_central/model/plant_details.dart';
+// import 'package:garden_central/screens/details/details_screen.dart';
+// import 'package:garden_central/screens/home_page.dart';
+// import 'package:garden_central/screens/side_bar.dart';
+
+/*class IndoorPlants extends StatefulWidget {
+  const IndoorPlants({Key? key}) : super(key: key);
+
+  @override
+  State<IndoorPlants> createState() => _IndoorPlantsState();
+}
+
+class _IndoorPlantsState extends State<IndoorPlants> {
+  final List<ProductModel> gridMap = [
+    ProductModel(
+        title: "Philodendron",
+        image:
+            "https://www.thespruce.com/thmb/KNNXwNqns6_FtyPBPfG8R9p13Tc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/philodendron-gloriosum-growing-guide-5272126-hero-d8f6fadcabff46d4a152d0eebb8fe1b5.jpg",
+        price: "PKR 1695"),
+    ProductModel(
+        title: "Snake Plant",
+        image:
+            "https://cdn.shopify.com/s/files/1/1706/1307/products/Sansevieria-zeylanica-Snake-Plant-Mini-Jesslyn-Plant-Pot-Black-Washed_8a02a074-152b-457a-a87c-7ccd45f55dd0_1200x.jpg?v=1681996962",
+        price: "PKR 790"),
+    ProductModel(
+      title: "Peace Lily",
+      image:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIayzqZLhJAYf2OQzjq1IWzR7dyYcWdlbr6Q&usqp=CAU",
+      price: "PKR 1070",
+    ),
+    ProductModel(
+        title: "Prayer Plant",
+        image:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROGaljDnxNW_yNramoij0P27q4WFlB7uQVlw&usqp=CAU",
+        price: "PKR 1070"),
+    ProductModel(
+        title: "Monstera",
+        image:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2K2PpwOJfUx5iJUQ-NYN7EYHbtU8FZV9loA&usqp=CAU",
+        price: "PKR 850"),
+
+    /*{
+      "title": "Philodendron",
+      "price": "PKR 255",
+      "images":
+          "https://www.thespruce.com/thmb/KNNXwNqns6_FtyPBPfG8R9p13Tc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/philodendron-gloriosum-growing-guide-5272126-hero-d8f6fadcabff46d4a152d0eebb8fe1b5.jpg",
+    },
+    {
+      "title": "Snake Plant",
+      "price": "PKR 790",
+      "images":
+          "https://cdn.shopify.com/s/files/1/1706/1307/products/Sansevieria-zeylanica-Snake-Plant-Mini-Jesslyn-Plant-Pot-Black-Washed_8a02a074-152b-457a-a87c-7ccd45f55dd0_1200x.jpg?v=1681996962",
+    },
+    {
+      "title": "Peace Lily",
+      "price": "PKR 1070",
+      "images":
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIayzqZLhJAYf2OQzjq1IWzR7dyYcWdlbr6Q&usqp=CAU",
+    },
+    {
+      "title": "Prayer Plant",
+      "price": "PKR 560",
+      "images":
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROGaljDnxNW_yNramoij0P27q4WFlB7uQVlw&usqp=CAU",
+    },
+    {
+      "title": "Monstera",
+      "price": "PKR 850",
+      "images":
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2K2PpwOJfUx5iJUQ-NYN7EYHbtU8FZV9loA&usqp=CAU",
+    },
+    {
+      "title": "Spider Plant",
+      "price": "PKR 670",
+      "images":
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkOwfPJHoeF6ia-6n3bhO9J26pb875YAtG9A&usqp=CAU",
+    },
+    {
+      "title": "Spider Plant",
+      "price": "PKR 670",
+      "images":
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkOwfPJHoeF6ia-6n3bhO9J26pb875YAtG9A&usqp=CAU",
+    },
+    {
+      "title": "Spider Plant",
+      "price": "PKR 670",
+      "images":
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkOwfPJHoeF6ia-6n3bhO9J26pb875YAtG9A&usqp=CAU",
+    }*/
+  ];
+
+  //ProductModel productModel = productList[index];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: SideBar(),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.grey.shade100,
+        centerTitle: true,
+        title: Text("Garden Central"),
+        titleTextStyle: TextStyle(color: Colors.black),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              //color: Colors.black,
+            ),
+            onPressed: () {
+              // do something
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.shopping_bag_outlined,
+              //color: Colors.black,
+            ),
+            onPressed: () {
+              // do something
+            },
+          )
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: double.infinity,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    //borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/indoor.jpg'),
+                        fit: BoxFit.cover),
+                  ),
+                  child: Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Center(
+                          child: Text(
+                            "INDOOR PLANTS",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GridView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 20.0,
+                    mainAxisSpacing: 20.0,
+                    mainAxisExtent: 267,
+                  ),
+                  itemCount: gridMap.length,
+                  itemBuilder: (_, index) {
+                    return GestureDetector(
+                        onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    DetailsScreen(product: gridMap[index]),
+                              ),
+                            ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              16.0,
+                            ),
+                            color: Colors.white,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(16.0),
+                                  topRight: Radius.circular(16.0),
+                                ),
+                                child: Image.network(
+                                  gridMap[index].image,
+                                  height: 200,
+                                  width: double.infinity,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      gridMap[index].title,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .subtitle1!
+                                          .merge(
+                                            const TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
+                                    ),
+                                    const SizedBox(
+                                      height: 8.0,
+                                    ),
+                                    Text(
+                                      gridMap[index].price,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .subtitle2!
+                                          .merge(
+                                            TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.grey.shade500,
+                                            ),
+                                          ),
+                                    ),
+                                    const SizedBox(
+                                      height: 8.0,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ));
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+*/
